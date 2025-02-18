@@ -174,6 +174,7 @@ jobs:
         indicators: true
         output: both
         thresholds: '60 80'
+        title: "Code Coverage Summary"
 
     - name: Add Coverage PR Comment
       uses: marocchino/sticky-pull-request-comment@v2

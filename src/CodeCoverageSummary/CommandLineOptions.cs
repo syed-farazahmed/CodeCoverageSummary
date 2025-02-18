@@ -42,5 +42,8 @@ namespace CodeCoverageSummary
 
         [Option(longName: "thresholds", Required = false, HelpText = "Threshold percentages for badge and health indicators, lower threshold can also be used to fail the action.", Default = "50 75")]
         public string Thresholds { get; set; }
+
+        [Option(longName: "title", Required = false, HelpText = "Title for the output.", Default = "Code Coverage Summary")]
+        public string Title { get; set; }
     }
 }

@@ -81,14 +81,14 @@ namespace CodeCoverageSummary
                                              if (o.Format.Equals("text", StringComparison.OrdinalIgnoreCase))
                                              {
                                                  fileExt = "txt";
-                                                 output = GenerateTextOutput(summary, badgeUrl, o.Indicators, hideBranchRate, o.HideComplexity);
+                                                 output = GenerateTextOutput(summary, badgeUrl, o.Indicators, hideBranchRate, o.HideComplexity,  o.Title);
                                                  if (o.FailBelowThreshold)
                                                      output += $"Minimum allowed line rate is {lowerThreshold * 100:N0}%{Environment.NewLine}";
                                              }
                                              else if (o.Format.Equals("md", StringComparison.OrdinalIgnoreCase) || o.Format.Equals("markdown", StringComparison.OrdinalIgnoreCase))
                                              {
                                                  fileExt = "md";
-                                                 output = GenerateMarkdownOutput(summary, badgeUrl, o.Indicators, hideBranchRate, o.HideComplexity);
+                                                 output = GenerateMarkdownOutput(summary, badgeUrl, o.Indicators, hideBranchRate, o.HideComplexity, o.Title);
                                                  if (o.FailBelowThreshold)
                                                      output += $"{Environment.NewLine}_Minimum allowed line rate is `{lowerThreshold * 100:N0}%`_{Environment.NewLine}";
                                              }
@@ -306,6 +306,12 @@ namespace CodeCoverageSummary
         private static string GenerateTextOutput(CodeSummary summary, string badgeUrl, bool indicators, bool hideBranchRate, bool hideComplexity)
         {
             StringBuilder textOutput = new();
+            if (!string.IsNullOrWhiteSpace(title))
+            {
+                textOutput.AppendLine(title)
+                        .AppendLine(new string('=', title.Length))
+                        .AppendLine();
+            }
 
             if (!string.IsNullOrWhiteSpace(badgeUrl))
             {
@@ -333,6 +339,12 @@ namespace CodeCoverageSummary
         {
             StringBuilder markdownOutput = new();
 
+            if (!string.IsNullOrWhiteSpace(title))
+            {
+                markdownOutput.AppendLine($"# {title}")
+                            .AppendLine();
+            }
+            
             if (!string.IsNullOrWhiteSpace(badgeUrl))
             {
                 markdownOutput.AppendLine($"![Code Coverage]({badgeUrl})")
