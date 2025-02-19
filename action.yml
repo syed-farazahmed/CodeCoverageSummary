@@ -46,7 +46,7 @@ inputs:
     default: "Code Coverage Summary"
 runs:
   using: "docker"
-  image: "docker://ghcr.io/irongut/codecoveragesummary:v1.3.0"
+  image: "docker://ghcr.io/syed-farazahmed/codecoveragesummary:v1.0.1"
   args:
     - "--files"
     - ${{ inputs.filename }}
