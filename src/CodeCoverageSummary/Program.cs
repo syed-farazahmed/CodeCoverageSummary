@@ -303,7 +303,7 @@ namespace CodeCoverageSummary
             }
         }
 
-        private static string GenerateTextOutput(CodeSummary summary, string badgeUrl, bool indicators, bool hideBranchRate, bool hideComplexity)
+        private static string GenerateTextOutput(CodeSummary summary, string badgeUrl, bool indicators, bool hideBranchRate, bool hideComplexity, string title)
         {
             StringBuilder textOutput = new();
             if (!string.IsNullOrWhiteSpace(title))
@@ -335,7 +335,7 @@ namespace CodeCoverageSummary
             return textOutput.ToString();
         }
 
-        private static string GenerateMarkdownOutput(CodeSummary summary, string badgeUrl, bool indicators, bool hideBranchRate, bool hideComplexity)
+        private static string GenerateMarkdownOutput(CodeSummary summary, string badgeUrl, bool indicators, bool hideBranchRate, bool hideComplexity, string title)
         {
             StringBuilder markdownOutput = new();
 
@@ -344,7 +344,7 @@ namespace CodeCoverageSummary
                 markdownOutput.AppendLine($"# {title}")
                             .AppendLine();
             }
-            
+
             if (!string.IsNullOrWhiteSpace(badgeUrl))
             {
                 markdownOutput.AppendLine($"![Code Coverage]({badgeUrl})")
